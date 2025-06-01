@@ -18,15 +18,18 @@ class SpriteHelper:
         return frame
     
 class TextHelper:
-    def __init__(self, text, color, size):
+    def __init__(self, text, color, size, pos):
         self.text_value = text
         self.color = color
+        self.pos = pos
         pygame.font.init()
         self.text = pygame.font.Font(join('assets', 'text', 'Jersey15-Regular.ttf'), size=size)
+        self.text_surf = self.text.render(str(self.text_value), True, self.color)
+        self.rect = self.text_surf.get_frect(center=(pos))
         
-    def render(self, screen, pos):
-        self.text_surf = self.text.render(str(round(self.text_value, 0)), True, self.color)
-        self.rect = self.text_surf.get_frect(center=pos)
+    def render(self, screen):
+        self.text_surf = self.text.render(str(self.text_value), True, self.color)
+        self.rect = self.text_surf.get_frect(center=(self.pos))
         screen.blit(self.text_surf, self.rect)
         
     def set_score(self, num):

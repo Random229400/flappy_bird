@@ -14,9 +14,9 @@ class Background(pygame.sprite.Sprite):
     
     def update(self, dt):
         if self.rect:
-            self.rect.centerx -= 210 * dt
+            self.rect.centerx -= 200 * dt
             if self.rect.right < 0:
-                Background(self.groups, self.sprites, (WINDOW_WIDTH/2+190, WINDOW_HEIGHT/2), layer=self._layer)
+                Background(self.groups, self.sprites, (WINDOW_WIDTH/2+180, WINDOW_HEIGHT/2), layer=self._layer)
                 self.kill()
                 
 class Foreground(pygame.sprite.Sprite):
@@ -29,6 +29,6 @@ class Foreground(pygame.sprite.Sprite):
         self.rect = self.image.get_frect(midbottom=pos)
     def update(self, dt) -> None:
          if self.rect:
-             self.rect.x -= 100 * dt
+             self.rect.x -= 50 * dt
              if self.rect.right < 0:
                  self.rect.x = 400

@@ -44,17 +44,20 @@ class Player(pygame.sprite.Sprite):
 
             #Animation
             if self.flapping:
-                self.animation_timer += dt
-
-                if self.animation_timer >= self.animation_speed:
-                    self.animation_timer = 0
-                    self.frames_played += 1
-                    self.current_frame = (self.current_frame + 1 ) % len(self.frames)
-                    self.image = self.frames[self.current_frame]
-
-                    if self.frames_played > self.flap_frames:
-                        self.flapping = False
+                self.start_anim(dt)
             
             # collision 
             if pygame.sprite.spritecollide(self, self.collide_sprite, dokill=False, collided=pygame.sprite.collide_mask):
                 self.live = False
+                
+    def start_anim(self, dt):
+        self.animation_timer += dt
+
+        if self.animation_timer >= self.animation_speed:
+            self.animation_timer = 0
+            self.frames_played += 1
+            self.current_frame = (self.current_frame + 1 ) % len(self.frames)
+            self.image = self.frames[self.current_frame]
+
+            if self.frames_played > self.flap_frames:
+                self.flapping = False

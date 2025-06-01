@@ -17,6 +17,17 @@ class PipeUp(pygame.sprite.Sprite):
         self.speed = 250
         PipeDown(self.groups, self._layer, self.down_pipe, self)
     
+    def reset(self):
+        if self.rect:
+        # Reset pipe position
+            self.y = randint(75, WINDOW_HEIGHT - 250)
+            self.rect.centerx = 600
+            self.rect.bottom = self.y
+
+            # Reset speed and gap to initial values
+            self.speed = 250
+            self.gap = 135
+    
     def update(self, dt):
         if self.rect:
             self.rect.x -= self.speed * dt
@@ -36,7 +47,8 @@ class PipeDown(pygame.sprite.Sprite):
     
     def update(self, dt):
         if self.rect:
-            self.rect.x -= self.pipe.speed * dt
+            self.rect.x = self.pipe.rect.x
+            self.rect.y = self.pipe.rect.bottom + self.pipe.gap
             if self.rect.right < 0:
                 self.rect.centerx = 500
                 self.rect.top = self.pipe.rect.bottom + self.pipe.gap
