@@ -119,7 +119,7 @@ class Game:
                     pygame.draw.rect(self.screen, 'black', self.play_button.rect.inflate(20, 20), 5, 1)
                     if pygame.FRect.collidepoint(self.play_button.rect.inflate(20, 20), pygame.mouse.get_pos()):
                         self.play_button.color = 'gray'
-                        if pygame.mouse.get_just_pressed()[0]:
+                        if pygame.mouse.get_pressed()[0]:
                             self.reset_game()
                     else:
                         self.play_button.color = 'black'
