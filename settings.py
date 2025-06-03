@@ -4,7 +4,7 @@ from random import randint
 import asyncio
 import sys, platform
 
-WINDOW_WIDTH, WINDOW_HEIGHT = 400, 600
+WINDOW_WIDTH, WINDOW_HEIGHT = 800, 600
 FRAME_SIZE = 16
 
 class SpriteHelper:
